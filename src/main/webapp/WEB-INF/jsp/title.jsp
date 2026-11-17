@@ -1,16 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>タイトル - NPPクエスト</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/title.css?v=2">
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>タイトル - NPPクエスト</title>
+<link rel="stylesheet"
+	href="<%= request.getContextPath() %>/css/title.css?v=2">
+<link rel="apple-touch-icon" sizes="180x180"
+	href="${pageContext.request.contextPath}/img/icon.png">
+<link rel="icon" type="image/png" sizes="192x192"
+	href="${pageContext.request.contextPath}/img/icon.png">
 </head>
-<body onclick="location.href='<%= request.getContextPath() %>/LoadServlet'">
-    <div class="start-container">
-        <div class="start-msg">ぼうけんをはじめる</div>
-        <div class="sub-msg">※画面のどこかをクリックしてください</div>
-    </div>
+<body
+	onclick="location.href='<%= request.getContextPath() %>/LoadServlet'">
+	<div class="start-container">
+		<div class="start-msg">ぼうけんをはじめる</div>
+		<div class="sub-msg">※画面のどこかをクリックしてください</div>
+	</div>
 </body>
 </html>
