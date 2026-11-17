@@ -1,0 +1,399 @@
+@charset "UTF-8";
+
+:root {
+	--app-w: 100vw;
+	--app-h: 100vh;
+}
+
+@supports (width: 100dvw) {
+	:root {
+		--app-w: 100dvw;
+		--app-h: 100dvh;
+	}
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	width: var(--app-w);
+	height: var(--app-h);
+	background-color: #111;
+	color: #fff;
+	font-family: 'Yu Gothic', sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	touch-action: manipulation;
+	user-select: none;
+	-webkit-user-select: none;
+}
+
+.game-container {
+	width: 100%;
+	max-width: 1024px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 15px;
+	box-sizing: border-box;
+}
+
+.header-container {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+	padding: 0 15px;
+	box-sizing: border-box;
+}
+
+.game-title {
+	font-size: 24px;
+	font-weight: bold;
+	color: #feda4a;
+}
+
+.status-bar {
+	font-size: 16px;
+	color: #aaa;
+}
+
+.canvas-wrapper {
+	background-color: #000;
+	display: flex;
+	justify-content: center;
+}
+
+#gameCanvas {
+	max-width: 100%;
+	height: auto;
+	object-fit: contain;
+	display: block;
+}
+
+.instructions {
+	margin-top: 15px;
+	font-size: 14px;
+	color: #888;
+}
+
+/* --- メニューUIのデザイン --- */
+.menu-container {
+	position: relative;
+}
+
+.menu-btn {
+	background-color: #333;
+	color: #feda4a;
+	border: 2px solid #feda4a;
+	padding: 6px 15px;
+	font-size: 16px;
+	font-weight: bold;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+
+.menu-btn:hover {
+	background-color: #555;
+}
+
+.dropdown-menu {
+	position: absolute;
+	top: 45px;
+	right: 0;
+	background-color: #222;
+	border: 2px solid #feda4a;
+	border-radius: 6px;
+	width: 180px;
+	z-index: 1500;
+	/* 1000 → 1500 に変更（十字キーの1000より前面へ） */
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+}
+
+.dropdown-menu.hidden {
+	display: none;
+}
+
+.dropdown-menu ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.dropdown-menu li {
+	border-bottom: 1px solid #444;
+}
+
+.dropdown-menu li:last-child {
+	border-bottom: none;
+}
+
+.dropdown-menu hr {
+	border: 0;
+	border-top: 1px solid #feda4a;
+	margin: 0;
+}
+
+.dropdown-menu a {
+	display: block;
+	padding: 12px 15px;
+	color: #fff;
+	text-decoration: none;
+	font-size: 14px;
+	transition: background-color 0.2s;
+}
+
+.dropdown-menu a:hover {
+	background-color: #444;
+	color: #feda4a;
+}
+
+.logout-link {
+	color: #ff6b6b !important;
+}
+
+.logout-link:hover {
+	color: #ff9999 !important;
+}
+
+/* --- アバターと名前の全体枠（PC用） --- */
+.avatar-wrapper {
+	position: fixed;
+	bottom: 20px;
+	left: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	z-index: 1000;
+}
+
+.avatar-name {
+	color: #fff;
+	background-color: rgba(0, 0, 0, 0.7);
+	padding: 4px 16px;
+	border-radius: 4px;
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 8px;
+	border: 1px solid #feda4a;
+	letter-spacing: 2px;
+}
+
+.avatar-display {
+	width: 200px;
+	height: 200px;
+	overflow: hidden;
+	border: 3px solid #feda4a;
+	background-color: #000;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+}
+
+.avatar-display img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* --- スマホ用 仮想十字キー（PCでは非表示） --- */
+.dpad-container {
+	display: none;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
+	touch-action: none;
+}
+
+.dpad-row {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.dpad-center {
+	width: 48px;
+	height: 48px;
+}
+
+.dpad-btn {
+	width: 48px;
+	height: 48px;
+	background-color: rgba(51, 51, 51, 0.75);
+	color: #feda4a;
+	border: 2px solid rgba(254, 218, 74, 0.8);
+	border-radius: 10px;
+	font-size: 18px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
+	touch-action: none;
+}
+
+.dpad-btn.active,
+.dpad-btn:active {
+	background-color: rgba(254, 218, 74, 0.35);
+	transform: scale(0.95);
+}
+
+/* --- 汎用非表示クラス --- */
+.hidden {
+	display: none !important;
+}
+
+/* --- ワープメニュー用のスタイル --- */
+.warp-menu-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.6);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 2000;
+}
+
+.warp-menu-box {
+	background: #fff;
+	padding: 20px 40px;
+	border-radius: 8px;
+	text-align: center;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+	color: #333;
+	max-width: 85%;
+	box-sizing: border-box;
+}
+
+.warp-menu-box p {
+	margin-top: 0;
+	font-size: 1.2rem;
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+
+.warp-menu-box button {
+	display: block;
+	width: 100%;
+	margin: 10px 0;
+	padding: 10px;
+	font-size: 1rem;
+	cursor: pointer;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background: #f9f9f9;
+}
+
+.warp-menu-box button:hover {
+	background: #e9e9e9;
+}
+
+/* =========================================================
+   スマホ・タブレット用（縦持ち強制回転＋横画面最適化）
+========================================================= */
+@media (hover: none) and (pointer: coarse) and (orientation: portrait) {
+	:root {
+		--app-w: 100vh;
+		--app-h: 100vw;
+	}
+
+	@supports (width: 100dvw) {
+		:root {
+			--app-w: 100dvh;
+			--app-h: 100dvw;
+		}
+	}
+
+	html {
+		width: 100vw;
+		height: 100vh;
+		overflow: hidden;
+		background-color: #111;
+	}
+
+	body {
+		position: fixed;
+		top: 0;
+		left: 0;
+		transform: rotate(90deg) translateY(-100%);
+		transform-origin: top left;
+	}
+}
+
+@media (hover: none) and (pointer: coarse),
+(max-height: 550px) and (orientation: landscape) {
+	.game-container {
+		margin-top: 0;
+		height: var(--app-h);
+		justify-content: center;
+	}
+
+	.header-container {
+		margin-bottom: 4px;
+		padding: 2px 15px;
+	}
+
+	.game-title {
+		font-size: 16px;
+	}
+
+	.status-bar {
+		font-size: 13px;
+	}
+
+	.menu-btn {
+		padding: 4px 10px;
+		font-size: 13px;
+	}
+
+	.dropdown-menu {
+		top: 32px;
+		width: 160px;
+	}
+
+	.dropdown-menu a {
+		padding: 6px 12px;
+		/* 縦幅を少しコンパクトにして十字キーとの干渉を軽減 */
+		font-size: 13px;
+	}
+
+	#gameCanvas {
+		max-height: calc(var(--app-h) - 42px);
+		width: auto;
+		max-width: var(--app-w);
+	}
+
+	.instructions {
+		display: none;
+	}
+
+	.dpad-container {
+		display: flex;
+		position: fixed;
+		bottom: 15px;
+		right: 20px;
+	}
+
+	.avatar-wrapper {
+		bottom: 15px;
+		left: 15px;
+	}
+
+	.avatar-name {
+		font-size: 11px;
+		padding: 2px 8px;
+		margin-bottom: 4px;
+	}
+
+	.avatar-display {
+		width: 68px;
+		height: 68px;
+		border-width: 2px;
+	}
+}

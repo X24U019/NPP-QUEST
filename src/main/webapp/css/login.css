@@ -1,0 +1,213 @@
+@charset "UTF-8";
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #111;
+}
+
+body {
+    background-image: url('../img/login_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Yu Gothic', sans-serif;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 650px;
+    margin-top: 240px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.error-msg {
+    color: #ff4d4d;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px #000;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.form-label {
+    width: 160px;
+    white-space: nowrap;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow:
+        2px  2px 0 #3d1e03,
+       -2px -2px 0 #3d1e03,
+        2px -2px 0 #3d1e03,
+       -2px  2px 0 #3d1e03,
+        0px  3px 5px rgba(0,0,0,0.8);
+    text-align: right;
+    padding-right: 15px;
+}
+
+.form-input {
+    width: 260px;
+    padding: 8px 12px;
+    font-size: 1.2rem;
+    border: 3px solid #ccc;
+    border-radius: 4px;
+    background-color: #ffffff;
+    box-shadow: inset 2px 2px 5px rgba(0,0,0,0.3);
+    outline: none;
+}
+
+.form-input:focus {
+    border-color: #feda4a;
+    box-shadow: 0 0 8px #feda4a;
+}
+
+.option-group {
+    text-align: center;
+    margin: 10px 0 15px 0;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: bold;
+    text-shadow:
+        1.5px  1.5px 0 #3d1e03,
+       -1.5px -1.5px 0 #3d1e03,
+        1.5px -1.5px 0 #3d1e03,
+       -1.5px  1.5px 0 #3d1e03;
+}
+
+.option-group label {
+    cursor: pointer;
+}
+
+.submit-wrapper {
+    margin-top: 25px;
+}
+
+.submit-btn {
+    display: block;
+    width: 240px;
+    margin: 0 auto;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2b1700;
+    background: linear-gradient(180deg, #ffe875 0%, #feda4a 50%, #d49a00 100%);
+    border: 2px solid #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+    transition: transform 0.1s, filter 0.1s;
+}
+
+.submit-btn:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+.link-box {
+    text-align: center;
+    margin-top: 12px;
+}
+
+.link-box a {
+    color: #feda4a;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    text-shadow:
+        1.5px  1.5px 0 #000,
+       -1.5px -1.5px 0 #000,
+        1.5px -1.5px 0 #000,
+       -1.5px  1.5px 0 #000;
+}
+
+.link-box a:hover {
+    text-decoration: underline;
+}
+
+/* スマホ縦持ち時は強制的に90度回転 */
+@media (hover: none) and (pointer: coarse) and (orientation: portrait) {
+    html {
+        width: 100vw;
+        height: 100vh;
+    }
+    body {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 100vh;
+        height: 100vw;
+        transform: translate(-50%, -50%) rotate(90deg);
+    }
+}
+@supports (width: 100dvw) {
+    @media (hover: none) and (pointer: coarse) and (orientation: portrait) {
+        body {
+            width: 100dvh;
+            height: 100dvw;
+        }
+    }
+}
+
+/* スマホ横画面用レイアウト調整 */
+@media (hover: none) and (pointer: coarse),
+       (max-height: 550px) and (orientation: landscape) {
+    .login-container {
+        max-width: 520px;
+        margin-top: 35px;
+        padding: 8px 16px;
+    }
+    .error-msg {
+        padding: 4px 10px;
+        font-size: 0.8rem;
+        margin-bottom: 6px;
+    }
+    .form-group {
+        margin-bottom: 6px;
+    }
+    .form-label {
+        width: 130px;
+        font-size: 1rem;
+        padding-right: 10px;
+    }
+    .form-input {
+        width: 220px;
+        padding: 4px 10px;
+        font-size: 0.95rem;
+        border-width: 2px;
+    }
+    .option-group {
+        margin: 5px 0 7px 0;
+        font-size: 0.85rem;
+    }
+    .submit-wrapper {
+        margin-top: 8px;
+    }
+    .submit-btn {
+        width: 220px;
+        padding: 6px;
+        font-size: 0.95rem;
+    }
+    .link-box {
+        margin-top: 6px;
+    }
+    .link-box a {
+        font-size: 0.85rem;
+    }
+}

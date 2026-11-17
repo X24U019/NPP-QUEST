@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: black;
+}
+
+body {
+    color: white;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 40px;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.loading-container {
+    text-align: right;
+}
+
+.loading-character {
+    width: 80px;
+    height: 80px;
+    background-image: url('../img/dummy_loading.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+    margin-top: 100px;
+}
+
+/* スマホ縦持ち時は強制的に90度回転 */
+@media (hover: none) and (pointer: coarse) and (orientation: portrait) {
+    html {
+        width: 100vw;
+        height: 100vh;
+    }
+    body {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 100vh;
+        height: 100vw;
+        transform: translate(-50%, -50%) rotate(90deg);
+    }
+}
+@supports (width: 100dvw) {
+    @media (hover: none) and (pointer: coarse) and (orientation: portrait) {
+        body {
+            width: 100dvh;
+            height: 100dvw;
+        }
+    }
+}
+
+/* スマホ横画面用レイアウト調整 */
+@media (hover: none) and (pointer: coarse),
+       (max-height: 550px) and (orientation: landscape) {
+    body {
+        padding: 20px 28px;
+    }
+    .loading-container h2 {
+        font-size: 18px;
+        margin: 0;
+    }
+    .loading-character {
+        width: 60px;
+        height: 60px;
+        margin-top: 14px;
+    }
+}

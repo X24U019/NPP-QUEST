@@ -1,0 +1,97 @@
+@charset "UTF-8";
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #000;
+}
+
+body {
+    cursor: pointer;
+    background-image: url('../img/title_bg.jpg');
+    background-size: auto 100%;
+    background-position: center top;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-family: 'Yu Gothic', sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.start-container {
+    margin-bottom: 50px;
+    text-align: center;
+    color: #ffffff;
+    animation: blink 1.2s infinite alternate;
+}
+
+.start-msg {
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow:
+        2px  2px 4px #000,
+       -2px -2px 4px #000,
+        2px -2px 4px #000,
+       -2px  2px 4px #000;
+}
+
+.sub-msg {
+    font-size: 1rem;
+    margin-top: 8px;
+    font-weight: normal;
+    text-shadow:
+        1px  1px 3px #000,
+       -1px -1px 3px #000,
+        1px -1px 3px #000,
+       -1px  1px 3px #000;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    100% { opacity: 0.25; }
+}
+
+/* スマホ縦持ち時は強制的に90度回転 */
+@media (hover: none) and (pointer: coarse) and (orientation: portrait) {
+    html {
+        width: 100vw;
+        height: 100vh;
+    }
+    body {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 100vh;
+        height: 100vw;
+        transform: translate(-50%, -50%) rotate(90deg);
+    }
+}
+@supports (width: 100dvw) {
+    @media (hover: none) and (pointer: coarse) and (orientation: portrait) {
+        body {
+            width: 100dvh;
+            height: 100dvw;
+        }
+    }
+}
+
+/* スマホ横画面用レイアウト調整 */
+@media (hover: none) and (pointer: coarse),
+       (max-height: 550px) and (orientation: landscape) {
+    .start-container {
+        margin-bottom: 24px;
+    }
+    .start-msg {
+        font-size: 1.4rem;
+    }
+    .sub-msg {
+        font-size: 0.85rem;
+        margin-top: 4px;
+    }
+}
